@@ -26,6 +26,8 @@ class ModelTrainer:
     def __init__(self):
         self.model_trainer_config = ModelTrainerConfig()
 
+    # ...existing code...
+
     def initiate_model_trainer(self, train_array, test_array):
         try:
             logging.info("Splitting training and test input data")
@@ -43,7 +45,15 @@ class ModelTrainer:
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
 
-            model_report: dict = evaluate_models(X_train, y_train, X_test, y_test, models)
+            model_report = evaluate_models(
+                X_train=X_train,
+                y_train=y_train,
+                X_test=X_test,
+                y_test=y_test,
+                models=models
+            )
+
+            # ...rest of the function remains the same...
             best_model_score = max(sorted(model_report.values()))
             
             best_model_name = list(model_report.keys())[
